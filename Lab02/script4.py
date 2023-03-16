@@ -21,5 +21,3 @@ a = '6'
 b = 9
 print(a + repr(b))
 print(a + str(b))
-
-print("Wiek: " + str(10))
