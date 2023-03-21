@@ -1,7 +1,6 @@
 """
 Lab02 - operacja na łańcuchach i konwersja typów
 """
-
 napis = "Wiek: " + str(10)
 print(napis)
 
