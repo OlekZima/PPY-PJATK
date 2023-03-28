@@ -5,4 +5,7 @@
     <orderEntry type="jdk" jdkName="C:\Users\Olek Zima\conda_env_ppy" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
+  <component name="PyDocumentationSettings">
+    <option name="renderExternalDocumentation" value="true" />
+  </component>
 </module>
