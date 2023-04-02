@@ -9,8 +9,8 @@ def catalan_numbers(x):
             print(catalan_num, end="\t")
             n += 1
         else:
-            break
+            return catalan_num
 
 
 how_many_numbers = int(input("Podaj liczbę naturalną: "))
-catalan_numbers(how_many_numbers)
+x = catalan_numbers(how_many_numbers)
