@@ -3,6 +3,8 @@
 from tkinter import BOTH, Tk, W, E, N, S, Canvas, NW, messagebox
 from tkinter.ttk import Frame, Style, Label, Entry, Button, Combobox
 
+from PIL import Image, ImageTk, ImageFilter
+
 max_h = 500
 max_w = 900
 
@@ -13,8 +15,16 @@ class Okno(Frame):
         self.parent = parent
         self.inicjalizuj()
 
+    def wczytaj_ponownie(self):
+        self.image = ImageTk.PhotoImage()
+        self.base.create_image(0, 0, image=self.image, anchor=NW)
+
     def wczytaj_obraz(self):
         sciezka = self.o.get()
+
+    def przywroc_obraz(self):
+        # self.im = self.obraz_oryg
+        self.wczytaj_ponownie()
 
     def inicjalizuj(self):
         self.parent.title("PjaSoft")
@@ -31,7 +41,7 @@ class Okno(Frame):
         self.z = Entry(self)
         self.z.grid(row=2, column=0, columnspan=2, rowspan=1, pady=4, padx=5, sticky=E + W + S + N)
 
-        otbtn = Button(self, text="Otwórz")
+        otbtn = Button(self, text="Otwórz", command=self.wczytaj_obraz())
         otbtn.grid(row=1, column=3)
 
         self.zbtn = Button(self, text="Zapisz")
