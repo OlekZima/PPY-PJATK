@@ -16,11 +16,23 @@ class Okno(Frame):
         self.inicjalizuj()
 
     def wczytaj_ponownie(self):
-        self.image = ImageTk.PhotoImage()
+        self.image = ImageTk.PhotoImage(self.im)
         self.base.create_image(0, 0, image=self.image, anchor=NW)
 
     def wczytaj_obraz(self):
         sciezka = self.o.get()
+        try:
+            self.im = Image.open(sciezka)
+            self.fbtn.config(state="normal")
+            self.pbtn.config(state="normal")
+            self.zbtn.config(state="normal")
+            self.sbtn.config(state="normal")
+            self.obraz_oryg = self.im
+            self.wczytaj_ponownie()
+        except FileNotFoundError:
+            messagebox.showerror("Błąd", "Plik nie istnieje")
+        except OSError:
+            messagebox.showerror("Bład", "Podaj plik graficzny")
 
     def przywroc_obraz(self):
         # self.im = self.obraz_oryg
@@ -41,7 +53,7 @@ class Okno(Frame):
         self.z = Entry(self)
         self.z.grid(row=2, column=0, columnspan=2, rowspan=1, pady=4, padx=5, sticky=E + W + S + N)
 
-        otbtn = Button(self, text="Otwórz", command=self.wczytaj_obraz())
+        otbtn = Button(self, text="Otwórz", command=self.wczytaj_obraz)
         otbtn.grid(row=1, column=3)
 
         self.zbtn = Button(self, text="Zapisz")
@@ -54,9 +66,9 @@ class Okno(Frame):
         self.fcbox = Combobox(self, values=["BLUR", "CONTOUR", "EMBOSS"])
         self.fcbox.grid(row=4, column=0, padx=5, pady=4, sticky=W + N)
 
-        self.sntn = Button(self, text="Skaluj")
-        self.sntn.grid(row=3, column=1, padx=5, pady=4, sticky=W + N)
-        self.sntn.config(state="disabled")
+        self.sbtn = Button(self, text="Skaluj")
+        self.sbtn.grid(row=3, column=1, padx=5, pady=4, sticky=W + N)
+        self.sbtn.config(state="disabled")
 
         self.fbtn = Button(self, text="Filtruj")
         self.fbtn.grid(row=4, column=1, padx=5, pady=4, sticky=W + N)
